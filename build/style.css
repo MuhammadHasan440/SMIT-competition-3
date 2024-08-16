@@ -1,0 +1,20 @@
+.mar{
+    margin-right: 600px;
+    margin-left: 600px;
+}
+.m-t{
+    margin-top: 150px;
+}
+.m-t-r{
+    margin-top: 150px;
+}
+.style{
+    list-style: none;
+}
+body{
+    background: url(https://www.photopiebackdrops.com/product_images/uploaded_images/street-lights-night-trees-motion-blur-63672-1920x1080.jpg);
+}
+.tran{
+    background-color: rgba(0, 0, 0, 0.3);
+
+}

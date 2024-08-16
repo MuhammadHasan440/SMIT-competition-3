@@ -15,7 +15,14 @@ import {
 
 
 
-
+const logout = document.querySelector('#logout-btn')
+const form = document.querySelector("#form");
+const todo = document.querySelector("#todo");
+const todo2 = document.querySelector("#todo2");
+const ul = document.querySelector("#ul");
+const select = document.querySelector("#select");
+const citiesBtn = document.querySelectorAll(".cities-btn");
+const reset = document.querySelector(".reset");
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -28,14 +35,6 @@ onAuthStateChanged(auth, (user) => {
   });
 
 
-
-  const logout = document.querySelector('#logout-btn')
-  const form = document.querySelector("#form");
-  const todo = document.querySelector("#todo");
-  const ul = document.querySelector("#ul");
-  const select = document.querySelector("#select");
-  const citiesBtn = document.querySelectorAll(".cities-btn");
-  const reset = document.querySelector(".reset");
 
   logout.addEventListener('click' , ()=> {
     signOut(auth).then(() => {
@@ -99,7 +98,7 @@ function renderTodo() {
   }
   arr.map((item) => {
     ul.innerHTML += `
-        <li>${item.todo} &nbsp; &nbsp;
+        <li>${item.todo} &nbsp; &nbsp;${item.todo2}
         <button class="deleteBtn btn btn-dark my-3">Delete Todo</button>
         <button class="editBtn btn btn-dark my-3">Edit Todo</button>
         </li>
@@ -141,17 +140,20 @@ form.addEventListener("submit", async (event) => {
   try {
     const docRef = await addDoc(collection(db, "todos"), {
       todo: todo.value,
+      title: todo2.value,
       city: select.value,
       time: Timestamp.fromDate(new Date()),
     });
     console.log("Document written with ID: ", docRef.id);
     arr.push({
       todo: todo.value,
+      todo2: todo2.value,
       id: docRef.id,
       city: select.value,
     });
     renderTodo();
     todo.value = "";
+    todo2.value = "";
   } catch (e) {
     console.error("Error adding document: ", e);
   }
